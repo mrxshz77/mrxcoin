@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Trading from "./pages/Trading";
 import AILab from "./pages/AILab";
+import AdvancedAILab from "./pages/AdvancedAILab";
+import AuthPage from "./pages/AuthPage";
 import TokenCreator from "./pages/TokenCreator";
 import AdminPanel from "./pages/AdminPanel";
 import FlashLoans from "./pages/FlashLoans";
@@ -23,8 +25,10 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/trading" element={<Trading />} />
           <Route path="/ai-lab" element={<AILab />} />
+          <Route path="/advanced-ai" element={<AdvancedAILab />} />
           <Route path="/create-token" element={<TokenCreator />} />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/flash-loans" element={<FlashLoans />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -14,7 +14,173 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_models: {
+        Row: {
+          accuracy: number | null
+          config: Json | null
+          created_at: string
+          id: string
+          name: string
+          performance_metrics: Json | null
+          status: string | null
+          training_data: Json | null
+          type: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          accuracy?: number | null
+          config?: Json | null
+          created_at?: string
+          id?: string
+          name: string
+          performance_metrics?: Json | null
+          status?: string | null
+          training_data?: Json | null
+          type: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          accuracy?: number | null
+          config?: Json | null
+          created_at?: string
+          id?: string
+          name?: string
+          performance_metrics?: Json | null
+          status?: string | null
+          training_data?: Json | null
+          type?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      mining_operations: {
+        Row: {
+          created_at: string
+          expires_at: string | null
+          id: string
+          mining_power: number
+          power_source: string | null
+          status: string | null
+          tokens_mined: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          mining_power: number
+          power_source?: string | null
+          status?: string | null
+          tokens_mined?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          mining_power?: number
+          power_source?: string | null
+          status?: string | null
+          tokens_mined?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          mining_power: number | null
+          role: string
+          simulation_balance: number | null
+          updated_at: string
+          user_id: string
+          username: string
+          wallet_address: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          mining_power?: number | null
+          role?: string
+          simulation_balance?: number | null
+          updated_at?: string
+          user_id: string
+          username: string
+          wallet_address?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          mining_power?: number | null
+          role?: string
+          simulation_balance?: number | null
+          updated_at?: string
+          user_id?: string
+          username?: string
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      trading_sessions: {
+        Row: {
+          ai_model_id: string | null
+          created_at: string
+          current_balance: number | null
+          id: string
+          initial_balance: number | null
+          profit_loss: number | null
+          session_type: string
+          status: string | null
+          token_pair: string
+          trades_count: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ai_model_id?: string | null
+          created_at?: string
+          current_balance?: number | null
+          id?: string
+          initial_balance?: number | null
+          profit_loss?: number | null
+          session_type: string
+          status?: string | null
+          token_pair: string
+          trades_count?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ai_model_id?: string | null
+          created_at?: string
+          current_balance?: number | null
+          id?: string
+          initial_balance?: number | null
+          profit_loss?: number | null
+          session_type?: string
+          status?: string | null
+          token_pair?: string
+          trades_count?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trading_sessions_ai_model_id_fkey"
+            columns: ["ai_model_id"]
+            isOneToOne: false
+            referencedRelation: "ai_models"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

@@ -19,6 +19,7 @@ const navigationItems = [
   { name: 'Dashboard', href: '/', icon: Home },
   { name: 'Trading', href: '/trading', icon: TrendingUp },
   { name: 'AI Lab', href: '/ai-lab', icon: Bot },
+  { name: 'Advanced AI', href: '/advanced-ai', icon: BarChart3 },
   { name: 'Create Token', href: '/create-token', icon: Coins },
   { name: 'Flash Loans', href: '/flash-loans', icon: Zap },
 ];
