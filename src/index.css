@@ -8,35 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Crypto-themed design system - Light mode fallback */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 263 70% 60%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
 
-    --radius: 0.5rem;
+    --warning: 48 96% 53%;
+    --warning-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 263 70% 50%;
+
+    --radius: 0.75rem;
+
+    /* Trading Platform Colors */
+    --trading-bg: 240 10% 3.9%;
+    --trading-card: 240 3.7% 15.9%;
+    --trading-hover: 240 5% 25%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%), hsl(217 91% 60%));
+    --gradient-secondary: linear-gradient(135deg, hsl(240 3.7% 15.9%), hsl(240 5% 25%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
+    --gradient-hero: linear-gradient(135deg, hsl(263 70% 50% / 0.2), hsl(217 91% 60% / 0.2));
+    
+    /* Neon Effects */
+    --neon-primary: 0 0 20px hsl(263 70% 50% / 0.5);
+    --neon-accent: 0 0 20px hsl(217 91% 60% / 0.5);
+    --neon-success: 0 0 20px hsl(142 76% 36% / 0.5);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +127,109 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Trading Platform Component Styles */
+@layer components {
+  .trading-card {
+    @apply bg-card/50 backdrop-blur-sm border border-border/50 shadow-lg;
+    @apply hover:bg-card/70 transition-all duration-300;
+  }
+  
+  .trading-button-primary {
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground;
+    @apply hover:shadow-lg hover:shadow-primary/25 transition-all duration-300;
+    @apply border border-primary/20 backdrop-blur-sm;
+  }
+  
+  .trading-button-success {
+    @apply bg-gradient-to-r from-success to-success/80 text-success-foreground;
+    @apply hover:shadow-lg hover:shadow-success/25 transition-all duration-300;
+  }
+  
+  .trading-button-danger {
+    @apply bg-gradient-to-r from-destructive to-destructive/80 text-destructive-foreground;
+    @apply hover:shadow-lg hover:shadow-destructive/25 transition-all duration-300;
+  }
+
+  .neon-glow {
+    @apply drop-shadow-lg;
+    filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.3));
+  }
+
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .trading-sidebar {
+    @apply bg-card/30 backdrop-blur-xl border-r border-border/50;
+  }
+
+  .price-up {
+    @apply text-success;
+    animation: pulse-success 1s ease-in-out;
+  }
+
+  .price-down {
+    @apply text-destructive;
+    animation: pulse-danger 1s ease-in-out;
+  }
+}
+
+@layer utilities {
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-success {
+    animation: pulse-success 1s ease-in-out;
+  }
+
+  .animate-pulse-danger {
+    animation: pulse-danger 1s ease-in-out;
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+  }
+  to {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.4), 0 0 40px hsl(var(--accent) / 0.2);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-success {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 8px hsl(var(--success) / 0.5);
+  }
+}
+
+@keyframes pulse-danger {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 8px hsl(var(--destructive) / 0.5);
   }
 }
